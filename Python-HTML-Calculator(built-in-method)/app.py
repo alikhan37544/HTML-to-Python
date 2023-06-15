@@ -4,14 +4,25 @@ import urllib.parse
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
-            with open('index.html', 'rb') as file:
+            self.path = '/index.html'
+        try:
+            if self.path.endswith('.html'):
+                mimetype = 'text/html'
+            elif self.path.endswith('.css'):
+                mimetype = 'text/css'
+            elif self.path.endswith('.js'):
+                mimetype = 'application/javascript'
+            else:
+                raise ValueError('Unknown file type')
+            
+            with open('.' + self.path, 'rb') as file:
+                self.send_response(200)
+                self.send_header('Content-type', mimetype)
+                self.end_headers()
                 self.wfile.write(file.read())
-        else:
-            self.send_response(404)
-            self.end_headers()
+        except IOError:
+            self.send_error(404, 'File Not Found: %s' % self.path)
+
 
     def do_POST(self):
         if self.path == '/calculate':
