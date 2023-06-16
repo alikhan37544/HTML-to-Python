@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculator</h1>
+        <form id="calculator-form">
+            <input type="text" id="result" disabled>
+            <div class="buttons">
+                <div>
+                    <button class="operator" value="+">+</button>
+                    <button class="operator" value="-">-</button>
+                    <button class="operator" value="*">*</button>
+                    <button class="operator" value="/">/</button>
+                </div>
+                <div>
+                    <button class="number" value="7">7</button>
+                    <button class="number" value="8">8</button>
+                    <button class="number" value="9">9</button>
+                </div>
+                <div>
+                    <button class="number" value="4">4</button>
+                    <button class="number" value="5">5</button>
+                    <button class="number" value="6">6</button>
+                </div>
+                <div>
+                    <button class="number" value="1">1</button>
+                    <button class="number" value="2">2</button>
+                    <button class="number" value="3">3</button>
+                </div>
+                <div>
+                    <button class="number" value="0">0</button>
+                    <button id="clear-btn" value="C">C</button>
+                    <button id="calculate-btn" value="=">=</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
